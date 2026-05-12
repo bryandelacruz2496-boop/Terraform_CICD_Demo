@@ -1,4 +1,4 @@
-module "demo_ecr" {
+module "demo_ecr1" {
   source = "../../module/ecr"
 
   name                 = "demo-app-ecr1"
