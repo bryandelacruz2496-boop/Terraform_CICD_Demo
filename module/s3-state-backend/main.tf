@@ -1,11 +1,16 @@
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name
+  bucket = "terraform-cicd-demo-state-bucket"
 
   lifecycle {
     prevent_destroy = true
   }
 
-  tags = var.tags
+  tags = {
+    Name        = "Terraform State Bucket"
+    Project     = "Terraform-CICD-Demo"
+    Environment = "production"
+    ManagedBy   = "terraform"
+  }
 }
 
 resource "aws_s3_bucket_versioning" "terraform_state" {
@@ -36,7 +41,7 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = var.dynamodb_table_name
+  name         = "terraform-cicd-demo-lock"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
@@ -45,5 +50,10 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 
-  tags = var.tags
+  tags = {
+    Name        = "Terraform State Lock Table"
+    Project     = "Terraform-CICD-Demo"
+    Environment = "production"
+    ManagedBy   = "terraform"
+  }
 }
