@@ -5,7 +5,7 @@ on:
 
 env:
   TF_VERSION: "1.7.5"
-  TF_WORKING_DIR: "src/workload-prod-demo"
+  TF_WORKING_DIR: "module/s3-state-backend"
   AWS_REGION: "ap-southeast-1"
 
 jobs:
