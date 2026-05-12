@@ -1,10 +1,6 @@
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "terraform-cicd-demo-state-bucket"
 
-  lifecycle {
-    prevent_destroy = true
-  }
-
   tags = {
     Name        = "Terraform State Bucket"
     Project     = "Terraform-CICD-Demo"
